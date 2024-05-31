@@ -49,13 +49,18 @@ public class DrawBehavior : MonoBehaviour
 
             if (Input.GetMouseButton(0))
             {
-                if (_mousePositionList.Count == 0 || Vector3.Distance(_mousePositionList[^1], mousePosition) > 0.1f)
-                {
-                    _mousePositionList.Add(mousePosition);
-                    _currentLineRenderer.positionCount = _mousePositionList.Count;
-                    _currentLineRenderer.SetPosition(_mousePositionList.Count - 1, mousePosition);
-                }
+                KeepDrawingLine(mousePosition);
             }
+        }
+    }
+
+    private void KeepDrawingLine(Vector3 mousePosition)
+    {
+        if (_mousePositionList.Count == 0 || Vector3.Distance(_mousePositionList[^1], mousePosition) > 0.1f)
+        {
+            _mousePositionList.Add(mousePosition);
+            _currentLineRenderer.positionCount = _mousePositionList.Count;
+            _currentLineRenderer.SetPosition(_mousePositionList.Count - 1, mousePosition);
         }
     }
 
